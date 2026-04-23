@@ -74,21 +74,32 @@ FROM clientes;
 
 -- 16. Mostrar venta + nombre del cliente + fecha
 
-
+--  Querys desde la 17 hasta la 21 hechas por Natalia Medel
 -- 17. Mostrar detalle de ventas con id_venta + nombre producto + cantidad
-
+SELECT d.id_venta, p.nombre, d.cantidad
+FROM detalle_venta d
+JOIN productos p ON d.id_producto = p.id_producto;
 
 -- 18. Mostrar nombre del cliente + id de venta + fecha
-
+SELECT c.nombre, v.id_venta, v.fecha
+FROM clientes c
+JOIN ventas v ON c.id_cliente = v.id_cliente;
 
 -- 19. Mostrar nombre del producto + cantidad vendida + id de venta
-
+SELECT p.nombre, d.cantidad, d.id_venta
+FROM productos p
+JOIN detalle_venta d ON p.id_producto = d.id_producto;
 
 -- 20. Mostrar cuántas ventas ha realizado cada cliente
-
+SELECT id_cliente, COUNT(*)
+FROM ventas
+GROUP BY id_cliente;
 
 -- 21. Mostrar solo los clientes con más de una venta
-
+SELECT id_cliente, COUNT(*)
+FROM ventas
+GROUP BY id_cliente
+HAVING COUNT(*) > 1;
 
 -- 22. Mostrar cuántas veces aparece cada producto en detalle_venta
 
