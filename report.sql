@@ -30,7 +30,7 @@ from productos;
 select * from productos
 where precio >50000;
 
--- Querys desde la 7 hasta la 11 hechas por
+-- Querys desde la 7 hasta la 11 hechas por Cristopher Contreras
 -- 7. Ventas realizadas el 2026-04-02
 
 SELECT * 
@@ -60,19 +60,27 @@ WHERE cantidad >= 2;
 SELECT COUNT(*) AS total_clientes
 FROM clientes;
 
+-- Querys desde la 12 hasta la 16 hechas por Arantxa Fischer
 -- 12. Total de productos
-
+SELECT COUNT (*) AS total_productos 
+FROM productos; 
 
 -- 13. Total de ventas
-
+SELECT COUNT (*) AS total_ventas 
+FROM ventas;
 
 -- 14. Precio promedio de productos
-
+SELECT AVG (precio) AS precio_promedio
+FROM productos;
 
 -- 15. Suma total de precios de productos
-
+SELECT SUM (precio) AS suma_total_precio
+FROM productos; 
 
 -- 16. Mostrar venta + nombre del cliente + fecha
+SELECT c.nombre AS nombre_cliente, v.fecha 
+FROM ventas v 
+JOIN clientes c ON v.id_cliente = c.id_cliente;
 
 --  Querys desde la 17 hasta la 21 hechas por Natalia Medel
 -- 17. Mostrar detalle de ventas con id_venta + nombre producto + cantidad
@@ -101,6 +109,7 @@ FROM ventas
 GROUP BY id_cliente
 HAVING COUNT(*) > 1;
 
+-- Querys desde la 7 hasta la 11 hechas por Cristian Díaz 
 -- 22. Mostrar cuántas veces aparece cada producto en detalle_venta
 
 SELECT p.nombre, COUNT(dv.id_producto) AS veces_vendido
@@ -115,7 +124,6 @@ FROM productos p
 JOIN detalle_venta dv ON p.id_producto = dv.id_producto
 GROUP BY p.nombre
 HAVING COUNT(dv.id_producto) > 1; 
-
 
 -- 24. Mostrar las ventas que tienen más de un producto asociado
 
@@ -132,7 +140,6 @@ JOIN ventas v ON c.id_cliente = v.id_cliente
 JOIN detalle_venta dv ON v.id_venta = dv.id_venta
 GROUP BY c.nombre
 HAVING SUM(dv.cantidad) > 2; 
-
 
 -- 26. Consulta trampa que no devuelva resultados
 -- Explicar por qué el resultado vacío es correcto
